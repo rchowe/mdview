@@ -18,6 +18,12 @@ if ARGV[0].nil?
 	exit
 end
 
+# Check if markdown is present
+if `which markdown`.nil?
+	error "Markdown binary not found (Is it in your $PATH?)"
+	exit
+end
+
 stylesheet = nil
 
 mdstyle = Pathname.new( ENV['HOME'] ) + '.mdstyle.css'
@@ -48,7 +54,9 @@ html = <<END_HTML
 	</head>
 	
 	<body>
+		<content>
 #{data}
+		</content>
 	</body>
 </html>
 END_HTML
