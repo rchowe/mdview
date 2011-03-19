@@ -15,7 +15,7 @@ mdview <i>markdown_file</i>
 Configuration
 -------------
 
-If you want to use a different stylesheet than the builtin, create a .mdview.css file in your home directory with the style you want to use.
+If you want to use a different stylesheet than the builtin, create a <code>.mdview.css</code> file in your home directory with the style you want to use.
 
 License
 -------
