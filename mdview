@@ -20,7 +20,7 @@ end
 
 stylesheet = nil
 
-mdstyle = Pathname.new( ENV['HOME'] ) + '.mdstyle'
+mdstyle = Pathname.new( ENV['HOME'] ) + '.mdstyle.css'
 if mdstyle.exist?
 	stylesheet = mdstyle.read
 else
