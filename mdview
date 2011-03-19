@@ -1,0 +1,60 @@
+#!/usr/bin/env ruby
+
+require 'tempfile'
+require 'pathname'
+
+def openInBrowser( filename )
+	# FIXME: Actually open in a cross-platform way
+	`x-www-browser "#{filename}" 2>/dev/null`
+end
+
+def error( text )
+	$stderr.puts "\033[31;1mError\033[0m: #{text}"
+end
+
+# Check for an argument
+if ARGV[0].nil?
+	error( "No file path specified" )
+	exit
+end
+
+stylesheet = nil
+
+mdstyle = Pathname.new( ENV['HOME'] ) + '.mdstyle'
+if mdstyle.exist?
+	stylesheet = mdstyle.read
+else
+	stylesheet = <<END_STYLE
+	body
+	{
+		font-family: 'Helvetica Neue', 'DejaVu Sans Light', 'Segoe UI', 'Helvetica', sans-serif;
+		font-weight: 300;
+	}
+END_STYLE
+end
+
+data = `markdown "#{ARGV[0]}"`
+path = Pathname.new( ARGV[0] )
+
+html = <<END_HTML
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<title>#{path.basename( path.extname )}</title>
+	
+		<style>
+			#{stylesheet}
+		</style>
+	</head>
+	
+	<body>
+#{data}
+	</body>
+</html>
+END_HTML
+
+Tempfile.open( ['mdview', '.html'] ) do |tmp|
+	tmp.puts html
+	tmp.flush
+	openInBrowser( "file://#{tmp.path}" )
+end
