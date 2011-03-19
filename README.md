@@ -20,4 +20,4 @@ If you want to use a different stylesheet than the builtin, create a <code>.mdvi
 License
 -------
 
-mdview is distributed under the BSD license. See the [LICENSE](license) file for more.
+mdview is distributed under the BSD license. See the [LICENSE](https://github.com/rchowe/mdview/blob/master/LICENSE) file for more.
