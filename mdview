@@ -4,8 +4,17 @@ require 'tempfile'
 require 'pathname'
 
 def openInBrowser( filename )
-	# FIXME: Actually open in a cross-platform way
-	`x-www-browser "#{filename}" 2>/dev/null`
+    # Ripped from the Sage viewer, but should work
+
+    # An ugly workaround to get this to run in the background
+    platform = RUBY_PLATFORM.downcase
+    if platform.include? 'linux'
+            system "x-www-browser \"#{url}\" 2>/dev/null &"
+        elsif platform.include? 'mswin'
+            `start "#{url}"`
+        elsif platform.include? 'darwin'
+            `open "#{url}"`
+    end
 end
 
 def error( text )
