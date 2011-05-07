@@ -1,7 +1,7 @@
 mdview - Markdown Viewer
 ========================
 
-A simple command-line utility that opens a markdown file in your default web browser. Currently Linux only (as it uses <code>x-www-browser</code> to start the browser), but I intend to get around to fixing that one of these days.
+A simple command-line utility that opens a markdown file in your default web browser.
 
 You must have markdown installed on your system and in your path to use this tool.
 
