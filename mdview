@@ -9,11 +9,11 @@ def openInBrowser( filename )
     # An ugly workaround to get this to run in the background
     platform = RUBY_PLATFORM.downcase
     if platform.include? 'linux'
-            system "x-www-browser \"#{url}\" 2>/dev/null &"
+            system "x-www-browser \"#{filename}\" 2>/dev/null &"
         elsif platform.include? 'mswin'
-            `start "#{url}"`
+            `start "#{filename}"`
         elsif platform.include? 'darwin'
-            `open "#{url}"`
+            `open "#{filename}"`
     end
 end
 
